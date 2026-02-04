@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.model.Voiture;
@@ -28,6 +29,7 @@ public class VoitureController {
         model.addAttribute("titre", "Liste des Voitures");
         return "voitures";
     }
+
     @GetMapping("/detail/{id}")
     public String DetailVoitures(Model model ,@PathVariable("id") int id) {
         Long ids = Long.parseLong(Integer.toString(id));
@@ -35,6 +37,18 @@ public class VoitureController {
         model.addAttribute("voitures", voitures);
         model.addAttribute("titre", "Détails de la voiture");
         return "detail-voiture";
+    }
+
+    @PostMapping("/save")
+    public String saveVoiture(Voiture voiture) {
+        voitureService.saveVoiture(voiture);
+        return "redirect:/voitures/liste";
+    }
+
+    @GetMapping("/pageSave")
+    public String pageSaveVoiture(Model model) {
+        model.addAttribute("voiture", new Voiture());
+        return "save-vehicule";
     }
     
 }

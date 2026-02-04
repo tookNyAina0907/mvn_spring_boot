@@ -37,33 +37,30 @@
 <body>
     <h1>${titre}</h1>
     
-    <c:if test="${empty voitures}">
-        <p>Aucune voiture disponible.</p>
-    </c:if>
-    
-    <c:if test="${not empty voitures}">
+    <form action="/voitures/save" method="post">
         <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Marque</th>
-                    <th>Modèle</th>
-                    <th>Année</th>
-                    <th>Prix (€)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach var="voiture" items="${voitures}">
-                    <tr>
-                        <td>${voiture.id}</td>
-                        <td>${voiture.marque}</td>
-                        <td>${voiture.modele}</td>
-                        <td>${voiture.annee}</td>
-                        <td>${voiture.prix}</td>
-                    </tr>
-                </c:forEach>
-            </tbody>
+            <tr>
+                <td><label for="marque">Marque:</label></td>
+                <td><input type="text" id="marque" name="marque" required></td>
+            </tr>
+            <tr>
+                <td><label for="modele">Modèle:</label></td>
+                <td><input type="text" id="modele" name="modele" required></td>
+            </tr>
+            <tr>
+                <td><label for="annee">Année:</label></td>
+                <td><input type="number" id="annee" name="annee" required></td>
+            </tr>
+            <tr>
+                <td><label for="prix">Prix (€):</label></td>
+                <td><input type="number" id="prix" name="prix" step="0.01" required></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button type="submit">Enregistrer la voiture</button>
+                </td>
+            </tr>
         </table>
-    </c:if>
+    </form>
 </body>
 </html>
