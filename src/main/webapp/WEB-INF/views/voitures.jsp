@@ -67,5 +67,6 @@
             </tbody>
         </table>
     </c:if>
+    <a href="/voitures/pageSave">Ajouter car</a>
 </body>
 </html>
